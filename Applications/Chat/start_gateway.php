@@ -20,7 +20,7 @@ use \Workerman\Autoloader;
 // gateway 进程，这里使用Text协议，可以用telnet测试
 $gateway = new Gateway("websocket://0.0.0.0:8282");
 // gateway名称，status方便查看
-$gateway->name = 'MyChat';
+$gateway->name = 'MyChatGateway';
 // gateway进程数
 $gateway->count = 4;
 // 本机ip，分布式部署时使用内网ip

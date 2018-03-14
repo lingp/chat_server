@@ -1,0 +1,113 @@
+2018-03-14 10:35:17 pid:1594 Workerman[start.php] start in DEBUG mode
+2018-03-14 14:22:25 pid:1935 Workerman[start.php] start in DEBUG mode
+2018-03-14 14:24:05 pid:2125 Workerman[start.php] reload 
+2018-03-14 14:24:05 pid:1935 Workerman[start.php] reloading
+2018-03-14 14:33:59 pid:2351 Workerman[start.php] reload 
+2018-03-14 14:33:59 pid:1935 Workerman[start.php] reloading
+2018-03-14 14:39:52 pid:2454 Workerman[start.php] reload 
+2018-03-14 14:39:52 pid:1935 Workerman[start.php] reloading
+2018-03-14 14:40:07 pid:2458 ArgumentCountError: Too few arguments to function GatewayWorker\Lib\Gateway::sendToClient(), 1 passed in /home/wwwroot/default/chat_server/Applications/Chat/Events.php on line 42 and exactly 2 expected in /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/Lib/Gateway.php:147
+Stack trace:
+#0 /home/wwwroot/default/chat_server/Applications/Chat/Events.php(42): GatewayWorker\Lib\Gateway::sendToClient('{"msg":"hello w...')
+#1 [internal function]: Events::onConnect('7f0000010b54000...')
+#2 /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/BusinessWorker.php(379): call_user_func('Events::onConne...', '7f0000010b54000...')
+#3 [internal function]: GatewayWorker\BusinessWorker->onGatewayMessage(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#4 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Connection/TcpConnection.php(657): call_user_func(Array, Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #47)
+#6 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Events/Select.php(286): call_user_func_array(Array, Array)
+#7 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(2096): Workerman\Events\Select->loop()
+#8 /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/BusinessWorker.php(190): Workerman\Worker->run()
+#9 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1294): GatewayWorker\BusinessWorker->run()
+#10 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1127): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#11 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1100): Workerman\Worker::forkWorkersForLinux()
+#12 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1426): Workerman\Worker::forkWorkers()
+#13 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1375): Workerman\Worker::monitorWorkersForLinux()
+#14 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(461): Workerman\Worker::monitorWorkers()
+#15 /home/wwwroot/default/chat_server/start.php(37): Workerman\Worker::runAll()
+#16 {main}
+2018-03-14 14:40:07 pid:2458 Worker process terminated
+2018-03-14 14:40:07 pid:1935 worker[Mychat:2458] exit with status 64000
+2018-03-14 14:40:08 pid:2459 ArgumentCountError: Too few arguments to function GatewayWorker\Lib\Gateway::sendToClient(), 1 passed in /home/wwwroot/default/chat_server/Applications/Chat/Events.php on line 42 and exactly 2 expected in /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/Lib/Gateway.php:147
+Stack trace:
+#0 /home/wwwroot/default/chat_server/Applications/Chat/Events.php(42): GatewayWorker\Lib\Gateway::sendToClient('{"msg":"hello w...')
+#1 [internal function]: Events::onConnect('7f0000010b57000...')
+#2 /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/BusinessWorker.php(379): call_user_func('Events::onConne...', '7f0000010b57000...')
+#3 [internal function]: GatewayWorker\BusinessWorker->onGatewayMessage(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#4 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Connection/TcpConnection.php(657): call_user_func(Array, Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #49)
+#6 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Events/Select.php(286): call_user_func_array(Array, Array)
+#7 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(2096): Workerman\Events\Select->loop()
+#8 /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/BusinessWorker.php(190): Workerman\Worker->run()
+#9 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1294): GatewayWorker\BusinessWorker->run()
+#10 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1127): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#11 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1100): Workerman\Worker::forkWorkersForLinux()
+#12 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1426): Workerman\Worker::forkWorkers()
+#13 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1375): Workerman\Worker::monitorWorkersForLinux()
+#14 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(461): Workerman\Worker::monitorWorkers()
+#15 /home/wwwroot/default/chat_server/start.php(37): Workerman\Worker::runAll()
+#16 {main}
+2018-03-14 14:40:08 pid:2459 Worker process terminated
+2018-03-14 14:40:08 pid:1935 worker[Mychat:2459] exit with status 64000
+2018-03-14 14:45:02 pid:2460 ArgumentCountError: Too few arguments to function GatewayWorker\Lib\Gateway::sendToClient(), 1 passed in /home/wwwroot/default/chat_server/Applications/Chat/Events.php on line 42 and exactly 2 expected in /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/Lib/Gateway.php:147
+Stack trace:
+#0 /home/wwwroot/default/chat_server/Applications/Chat/Events.php(42): GatewayWorker\Lib\Gateway::sendToClient('{"msg":"hello w...')
+#1 [internal function]: Events::onConnect('7f0000010b57000...')
+#2 /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/BusinessWorker.php(379): call_user_func('Events::onConne...', '7f0000010b57000...')
+#3 [internal function]: GatewayWorker\BusinessWorker->onGatewayMessage(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#4 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Connection/TcpConnection.php(657): call_user_func(Array, Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #50)
+#6 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Events/Select.php(286): call_user_func_array(Array, Array)
+#7 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(2096): Workerman\Events\Select->loop()
+#8 /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/BusinessWorker.php(190): Workerman\Worker->run()
+#9 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1294): GatewayWorker\BusinessWorker->run()
+#10 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1127): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#11 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1100): Workerman\Worker::forkWorkersForLinux()
+#12 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1426): Workerman\Worker::forkWorkers()
+#13 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1375): Workerman\Worker::monitorWorkersForLinux()
+#14 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(461): Workerman\Worker::monitorWorkers()
+#15 /home/wwwroot/default/chat_server/start.php(37): Workerman\Worker::runAll()
+#16 {main}
+2018-03-14 14:45:02 pid:2460 Worker process terminated
+2018-03-14 14:45:02 pid:1935 worker[Mychat:2460] exit with status 64000
+2018-03-14 14:46:42 pid:2457 ArgumentCountError: Too few arguments to function GatewayWorker\Lib\Gateway::sendToClient(), 1 passed in /home/wwwroot/default/chat_server/Applications/Chat/Events.php on line 42 and exactly 2 expected in /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/Lib/Gateway.php:147
+Stack trace:
+#0 /home/wwwroot/default/chat_server/Applications/Chat/Events.php(42): GatewayWorker\Lib\Gateway::sendToClient('{"msg":"hello w...')
+#1 [internal function]: Events::onConnect('7f0000010b57000...')
+#2 /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/BusinessWorker.php(379): call_user_func('Events::onConne...', '7f0000010b57000...')
+#3 [internal function]: GatewayWorker\BusinessWorker->onGatewayMessage(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#4 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Connection/TcpConnection.php(657): call_user_func(Array, Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #48)
+#6 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Events/Select.php(286): call_user_func_array(Array, Array)
+#7 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(2096): Workerman\Events\Select->loop()
+#8 /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/BusinessWorker.php(190): Workerman\Worker->run()
+#9 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1294): GatewayWorker\BusinessWorker->run()
+#10 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1127): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#11 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1100): Workerman\Worker::forkWorkersForLinux()
+#12 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1426): Workerman\Worker::forkWorkers()
+#13 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1375): Workerman\Worker::monitorWorkersForLinux()
+#14 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(461): Workerman\Worker::monitorWorkers()
+#15 /home/wwwroot/default/chat_server/start.php(37): Workerman\Worker::runAll()
+#16 {main}
+2018-03-14 14:46:42 pid:2457 Worker process terminated
+2018-03-14 14:46:42 pid:1935 worker[Mychat:2457] exit with status 64000
+2018-03-14 14:47:42 pid:2455 ArgumentCountError: Too few arguments to function GatewayWorker\Lib\Gateway::sendToClient(), 1 passed in /home/wwwroot/default/chat_server/Applications/Chat/Events.php on line 42 and exactly 2 expected in /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/Lib/Gateway.php:147
+Stack trace:
+#0 /home/wwwroot/default/chat_server/Applications/Chat/Events.php(42): GatewayWorker\Lib\Gateway::sendToClient('{"msg":"hello w...')
+#1 [internal function]: Events::onConnect('7f0000010b57000...')
+#2 /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/BusinessWorker.php(379): call_user_func('Events::onConne...', '7f0000010b57000...')
+#3 [internal function]: GatewayWorker\BusinessWorker->onGatewayMessage(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#4 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Connection/TcpConnection.php(657): call_user_func(Array, Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #48)
+#6 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Events/Select.php(286): call_user_func_array(Array, Array)
+#7 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(2096): Workerman\Events\Select->loop()
+#8 /home/wwwroot/default/chat_server/vendor/workerman/gateway-worker/src/BusinessWorker.php(190): Workerman\Worker->run()
+#9 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1294): GatewayWorker\BusinessWorker->run()
+#10 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1127): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#11 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1100): Workerman\Worker::forkWorkersForLinux()
+#12 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1426): Workerman\Worker::forkWorkers()
+#13 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(1375): Workerman\Worker::monitorWorkersForLinux()
+#14 /home/wwwroot/default/chat_server/vendor/workerman/workerman/Worker.php(461): Workerman\Worker::monitorWorkers()
+#15 /home/wwwroot/default/chat_server/start.php(37): Workerman\Worker::runAll()
+#16 {main}
+2018-03-14 14:47:42 pid:2455 Worker process terminated
+2018-03-14 14:47:42 pid:1935 worker[Mychat:2455] exit with status 64000
