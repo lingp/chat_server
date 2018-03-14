@@ -35,10 +35,10 @@ class Events
      * @param int $client_id 连接id
      */
     public static function onConnect($client_id) {
-        // 向当前client_id发送数据 
-        Gateway::sendToClient($client_id, "Hello $client_id\n");
-        // 向所有人发送
-        Gateway::sendToAll("$client_id login\n");
+//        // 向当前client_id发送数据
+//        Gateway::sendToClient($client_id, "Hello $client_id\n");
+//        // 向所有人发送
+//        Gateway::sendToAll("$client_id login\n");
     }
     
    /**
@@ -48,7 +48,94 @@ class Events
     */
    public static function onMessage($client_id, $message) {
         // 向所有人发送 
-        Gateway::sendToAll("$client_id said $message");
+//        Gateway::sendToAll("$client_id said $message");
+       echo "client: {$_SERVER['REMOTE_ADDR']}:{$_SERVER['REMOTE_PORT']},
+             gateway: {$_SERVER['GATEWAY_ADDR']}:{$_SERVER['GATEWAY_PORT']},
+             client_id: $client_id, session:" . json_encode($_SESSION) ." onMessage: " . $message . " \n
+       ";
+
+       $message_data = json_decode($message, true);
+       if(!$message_data)
+       {
+           return ;
+       }
+
+       switch ($message_data['type']) {
+           // 客户端回应服务端的心跳
+           case 'pong':
+               return;
+               break;
+           // 客户端登录，添加到客户端，广播给所有客户端进入聊天室
+           case 'login':
+               if (!isset($message_data['room_id'])) {
+                   throw new \Exception("\$message_data['room_id'] not set. 
+                                        client_ip:{$_SERVER['REMOTE_ADDR']} \$message:{$message}");
+               }
+
+               $room_id = $message_data['room_id'];
+               $client_name = htmlspecialchars($message_data['client_name']);
+               $_SESSION['room_id'] = $room_id;
+               $_SESSION['client_name'] = $client_name;
+
+               $clients_list = Gateway::getClientSessionsByGroup($room_id);
+               foreach ($clients_list as $tmp_client_id => $item) {
+                   $clients_list[$tmp_client_id] = $item['client_name'];
+               }
+               $clients_list[$client_id] = $client_name;
+
+               // 转播给当前房间的所有客户端
+               $new_message = array(
+                   'type' => $message_data['type'],
+                   'client_id' => $client_id,
+                   'client_name' => $client_name,
+                   'time' => date('Y-m-d H:i:s')
+               );
+               Gateway::sendToGroup($room_id, json_encode($new_message));
+               Gateway::joinGroup($client_id, $room_id);
+
+               $new_message['client_list'] = $clients_list;
+               Gateway::sendToCurrentClient(json_encode($new_message));
+               return;
+               break;
+           case 'say':
+               if (!isset($_SESSION['room_id'])) {
+                   throw new \Exception("\$_SESSION['room_id'] not set.
+                        client_ip: {$_SESSION['REMOTE_ADDR']}
+                    ");
+               }
+               $room_id = $_SESSION['room_id'];
+               $client_name = $_SESSION['client_name'];
+
+               if ($message_data['to_client_id'] != 'all')
+               {
+                   $new_message = [
+                       'type' => 'say',
+                       'from_client_id' => $client_id,
+                       'form_client_name' => $client_name,
+                       'to_client_id' => $message_data['to_client_id'],
+                       'content' => "<b>对你说：</b>" . nl2br(htmlspecialchars($message_data['content'])),
+                       'time' => date('Y-m-d H:i:s'),
+                   ];
+                   Gateway::sendToClient($message_data['to_client_id'], json_encode($new_message));
+                   $new_message['content'] = "<b>你对".htmlspecialchars($message_data['to_client_name'])
+                       ."说:</b>".nl2br(htmlspecialchars($message_data['to_client_name']));
+                   return Gateway::sendToCurrentClient(json_encode($new_message));
+               }
+
+               $new_message = [
+                   'type' => 'say',
+                   'from_client_id' => $client_id,
+                   'from_client_name' => $client_name,
+                   'to_client_id' => 'all',
+                   'content' => bl2br(htmlspecialchars($message_data['content'])),
+                   'time' => date('Y-m-d H:i:s')
+               ];
+               return Gateway::sendToGroup($room_id, json_encode($new_message));
+               break;
+       }
+
+
+
    }
    
    /**
@@ -57,6 +144,21 @@ class Events
     */
    public static function onClose($client_id) {
        // 向所有人发送 
-       GateWay::sendToAll("$client_id logout");
+       echo "client: {$_SERVER['REMOTE_ADDR']}:{$_SERVER['REMOTE_PORT']},
+             gateway: {$_SERVER['GATEWAY_ADDR']}:{$_SERVER['GATEWAY_PORT']},
+             client_id: {$client_id} onClose:'' \n
+            ";
+       if(isset($_SESSION['room_id']))
+       {
+           $room_id = $_SESSION['room_id'];
+           $new_message = [
+               'type' => 'logout',
+               'from_room_id' => $client_id,
+               'from_client_name' => $_SESSION['client_name'],
+               'time' => date('Y-m-d H:i:s')
+           ];
+           Gateway::sendToGroup($room_id, $new_message);
+       }
+
    }
 }
